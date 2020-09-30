@@ -65,6 +65,26 @@ class Calculator {
 		this.prevOperand = "";
 	}
 
+	randomNum(min, max) {
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	}
+	updateBackground() {
+		document.body.style.background =
+			"radial-gradient(rgb(" +
+			this.randomNum(0, 255) +
+			"," +
+			this.randomNum(0, 255) +
+			"," +
+			this.randomNum(0, 255) +
+			"), rgb(" +
+			this.randomNum(0, 255) +
+			"," +
+			this.randomNum(0, 255) +
+			"," +
+			this.randomNum(0, 255) +
+			"))";
+	}
+
 	getDisplayNumber(number) {
 		const stringNumber = number.toString();
 		const integerDigits = parseFloat(stringNumber.split(".")[0]);
@@ -116,20 +136,24 @@ operandButtons.forEach((button) => {
 	button.addEventListener("click", () => {
 		calculator.chooseOperation(button.innerText);
 		calculator.updateDisplay();
+		calculator.updateBackground();
 	});
 });
 
 equalsButton.addEventListener("click", (button) => {
 	calculator.compute();
 	calculator.updateDisplay();
+	calculator.updateBackground();
 });
 
 allClearButton.addEventListener("click", () => {
 	calculator.clear();
 	calculator.updateDisplay();
+	calculator.updateBackground();
 });
 
 deleteButton.addEventListener("click", () => {
 	calculator.delete();
 	calculator.updateDisplay();
+	calculator.updateBackground();
 });
